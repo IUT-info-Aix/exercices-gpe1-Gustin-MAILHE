@@ -1,6 +1,8 @@
 package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -58,6 +60,34 @@ public class Palette extends Application {
         bleu = new Button("Bleu");
 
         /* VOTRE CODE ICI */
+
+        btnCouleur btnVert = new btnCouleur("green");
+        btnCouleur btnRouge = new btnCouleur("red");
+        btnCouleur btnBleu = new btnCouleur("blue");
+
+        vert.setOnAction(event -> {
+            panneau.setStyle("-fx-background-color: " + btnVert.getCouleur() + ";");
+            texteDuBas.setText("Le Vert est une jolie couleur");
+            texteDuBas.setStyle("-fx-text-fill: " + btnVert.getCouleur() + ";");
+            btnVert.setNbFois(btnVert.getNbFois()+1);
+            texteDuHaut.setText("Vert choisi " + btnVert.getNbFois() + " fois");
+        });
+        rouge.setOnAction(event -> {
+            panneau.setStyle("-fx-background-color: " + btnRouge.getCouleur() + ";");
+            texteDuBas.setText("Le Rouge est une jolie couleur");
+            texteDuBas.setStyle("-fx-text-fill: " + btnRouge.getCouleur() + ";");
+            btnRouge.setNbFois(btnRouge.getNbFois()+1);
+            texteDuHaut.setText("Rouge choisi " + btnRouge.getNbFois() + " fois");
+        });
+        bleu.setOnAction(event -> {
+            panneau.setStyle("-fx-background-color: " + btnBleu.getCouleur() + ";");
+            texteDuBas.setText("Le Bleu est une jolie couleur");
+            texteDuBas.setStyle("-fx-text-fill: " + btnBleu.getCouleur() + ";");
+            btnBleu.setNbFois(btnBleu.getNbFois()+1);
+            texteDuHaut.setText("Bleu choisi " + btnBleu.getNbFois() + " fois");
+        });
+
+
 
         boutons.getChildren().addAll(vert, rouge, bleu);
 

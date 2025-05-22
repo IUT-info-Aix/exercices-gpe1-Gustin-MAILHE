@@ -1,8 +1,11 @@
-package fr.amu.iut.exercice3;
+package fr.amu.iut.exercice13;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+
+import java.util.List;
 
 @SuppressWarnings("Duplicates")
 public class MainPersonnes  {
@@ -11,13 +14,51 @@ public class MainPersonnes  {
 
     private static ListChangeListener<Personne> unChangementListener;
 
+    private static ListChangeListener<Personne> plusieursChangementsListener;
+
     public static void main(String[] args) {
 
-        lesPersonnes = FXCollections.observableArrayList();
+        lesPersonnes = FXCollections.observableArrayList(personne -> new Observable[] {personne.ageProperty()});
 
-//        unChangementListener = à completer
+        unChangementListener = new ListChangeListener<Personne>() {
+            @Override
+            public void onChanged(Change<? extends Personne> c) {
+                while (c.next()) {
+                    if (c.wasAdded()){
+                        System.out.println("On été ajouté :");
+                        for (int i = c.getFrom(); i < c.getTo(); ++i) {
+                            System.out.println(lesPersonnes.get(i).getNom());
+                        }
+                    }
+                    if (c.wasRemoved()){
+                        System.out.println("On été supprimé :");
+                        for (Personne el : c.getRemoved()) {
+                            System.out.println(el.getNom());
+                        }
+                    }
+                    if (c.wasUpdated()){
+                        System.out.println("On été mis à jour :");
+                        for (int i = c.getFrom(); i < c.getTo(); ++i) {
+                            int age = lesPersonnes.get(i).getAge();
+                            String nom = lesPersonnes.get(i).getNom();
+                            System.out.println(nom + " a maintenant " + age + " ans");
+                        }
+                    }
+                }
+            }
+        };
+
+//        plusieursChangementsListener = new ListChangeListener<Personne>() {
+//            @Override
+//            public void onChanged(Change<? extends Personne> change) {
+//
+//            }
+//        }
 
         lesPersonnes.addListener(unChangementListener);
+//        lesPersonnes.addListener(plusieursChangementsListener);
+
+        question5();
     }
 
     public static void question1() {

@@ -1,4 +1,4 @@
-package fr.amu.iut.exercice2;
+package fr.amu.iut.exercice12;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -57,6 +57,28 @@ public class Palette extends Application {
         vert = new CustomButton("Vert", "#31BCA4");
         rouge = new CustomButton("Rouge", "#F21411");
         bleu = new CustomButton("Bleu", "#3273A4");
+
+        vert.setOnAction(event -> {
+            panneau.setStyle("-fx-background-color: " + vert.getCouleur() + ";");
+            texteDuBas.setText("Le Vert est une jolie couleur");
+            texteDuBas.setStyle("-fx-text-fill: " + vert.getCouleur() + ";");
+            vert.setNbClics(vert.getNbClics()+1);
+            texteDuHaut.setText("Vert choisi " + vert.getNbClics() + " fois");
+        });
+        rouge.setOnAction(event -> {
+            panneau.setStyle("-fx-background-color: " + rouge.getCouleur() + ";");
+            texteDuBas.setText("Le Rouge est une jolie couleur");
+            texteDuBas.setStyle("-fx-text-fill: " + rouge.getCouleur() + ";");
+            rouge.setNbClics(rouge.getNbClics()+1);
+            texteDuHaut.setText("Rouge choisi " + rouge.getNbClics() + " fois");
+        });
+        bleu.setOnAction(event -> {
+            panneau.setStyle("-fx-background-color: " + bleu.getCouleur() + ";");
+            texteDuBas.setText("Le Bleu est une jolie couleur");
+            texteDuBas.setStyle("-fx-text-fill: " + bleu.getCouleur() + ";");
+            bleu.setNbClics(bleu.getNbClics()+1);
+            texteDuHaut.setText("Bleu choisi " + bleu.getNbClics() + " fois");
+        });
 
         gestionnaireEvenement = (event) -> {
             sourceOfEvent = (CustomButton) event.getSource();

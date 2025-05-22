@@ -21,6 +21,19 @@ public class MainPersonnes {
         lesPersonnes = new SimpleListProperty<>(FXCollections.observableArrayList());
         ageMoyen = new SimpleIntegerProperty(0);
 
+        calculAgeMoyen = new IntegerBinding() {
+            {
+                this.bind(lesPersonnes);
+            }
+            @Override
+            protected int computeValue() {
+                int sumAge = 0;
+                for (Personne p : lesPersonnes){
+                    sumAge += p.g
+                }
+            }
+        }
+
         question1();
 //        question2();
     }
